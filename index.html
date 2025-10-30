@@ -1,680 +1,429 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="EduBot - Seu assistente de IA especializado em concursos públicos e ENEM. Bots especializados, correção de redação e chance de ganhar R$ 10.000!">
-    <title>EduBot - Assistente IA para Concursos | Ganhe R$ 10 mil</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #2563eb;
-            --primary-dark: #1e40af;
-            --secondary: #10b981;
-            --accent: #f59e0b;
-            --dark: #1f2937;
-            --light: #f3f4f6;
-            --white: #ffffff;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-        }
-
-        /* Header */
-        header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: var(--white);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        .nav-links a:hover {
-            opacity: 0.8;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: var(--white);
-            padding: 8rem 2rem 6rem;
-            text-align: center;
-            margin-top: 60px;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 0.8s;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-            animation: fadeInUp 1s;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: var(--accent);
-            color: var(--white);
-            padding: 1rem 3rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: bold;
-            transition: transform 0.3s, box-shadow 0.3s;
-            animation: fadeInUp 1.2s;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4);
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-
-        /* Features Section */
-        .features {
-            background: var(--white);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature-card {
-            background: var(--light);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Competition Section */
-        .competition {
-            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-            color: var(--dark);
-            text-align: center;
-            padding: 4rem 2rem;
-        }
-
-        .prize-amount {
-            font-size: 4rem;
-            font-weight: bold;
-            color: var(--white);
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-            margin: 1rem 0;
-        }
-
-        /* Pricing Section */
-        .pricing {
-            background: var(--light);
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .pricing-card {
-            background: var(--white);
-            border-radius: 15px;
-            padding: 2.5rem;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-        }
-
-        .pricing-card.featured {
-            border: 3px solid var(--accent);
-            transform: scale(1.05);
-        }
-
-        .badge {
-            position: absolute;
-            top: -15px;
-            right: 20px;
-            background: var(--accent);
-            color: var(--white);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-
-        .price {
-            font-size: 3rem;
-            font-weight: bold;
-            color: var(--primary);
-            margin: 1rem 0;
-        }
-
-        .price-small {
-            font-size: 1rem;
-            color: #6b7280;
-        }
-
-        .features-list {
-            list-style: none;
-            margin: 2rem 0;
-            text-align: left;
-        }
-
-        .features-list li {
-            padding: 0.5rem 0;
-            padding-left: 2rem;
-            position: relative;
-        }
-
-        .features-list li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--secondary);
-            font-weight: bold;
-        }
-
-        .buy-button {
-            display: block;
-            width: 100%;
-            padding: 1rem;
-            background: var(--primary);
-            color: var(--white);
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-
-        .buy-button:hover {
-            background: var(--primary-dark);
-        }
-
-        /* Testimonials */
-        .testimonials {
-            background: var(--white);
-        }
-
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .testimonial-card {
-            background: var(--light);
-            padding: 2rem;
-            border-radius: 15px;
-            border-left: 5px solid var(--secondary);
-        }
-
-        .testimonial-author {
-            font-weight: bold;
-            margin-top: 1rem;
-            color: var(--primary);
-        }
-
-        /* FAQ */
-        .faq {
-            background: var(--light);
-        }
-
-        .faq-item {
-            background: var(--white);
-            margin: 1rem 0;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        .faq-question {
-            font-weight: bold;
-            font-size: 1.1rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: var(--white);
-            text-align: center;
-            padding: 3rem 2rem;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .prize-amount {
-                font-size: 3rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-        }
-
-        /* Section Titles */
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #6b7280;
-            margin-bottom: 2rem;
-        }
-
-        /* Stats */
-        .stats {
-            background: var(--primary);
-            color: var(--white);
-            padding: 3rem 2rem;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: bold;
-        }
-
-        .stat-label {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EduBot — by Go Simulados | IA para Concursos & ENEM</title>
+  <meta name="description" content="EduBot: assistente de IA para concursos e ENEM. Simulados, estatísticas, correção de redação e bots especializados.">
+  <meta property="og:title" content="EduBot — by Go Simulados">
+  <meta property="og:description" content="Acelere sua aprovação com IA.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1513258496099-48168024aec0?q=80&w=1400&auto=format&fit=crop">
+  <link rel="icon" type="image/svg+xml" href="edubot-logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary:#2563eb;
+      --primary-600:#1e40af;
+      --secondary:#22c55e;
+      --accent:#f59e0b;
+      --ink:#0f172a;
+      --muted:#6b7280;
+      --bg:#0b1020;
+      --card:#0d1630;
+      --border: rgba(255,255,255,.08);
+      --radius: 16px;
+      --shadow: 0 8px 30px rgba(0,0,0,.18);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color:#e5e7eb;
+      background: radial-gradient(1200px 800px at 10% -10%, rgba(37,99,235,.35), transparent 60%),
+                  radial-gradient(800px 600px at 90% 0%, rgba(34,197,94,.25), transparent 50%),
+                  linear-gradient(180deg, #0b1020 0%, #0a0f1d 100%);
+      line-height:1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1200px;margin:0 auto;padding:0 20px}
+    /* Header */
+    header{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter:saturate(180%) blur(10px);
+      background:rgba(11,16,32,.65);
+      border-bottom:1px solid var(--border);
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:36px;width:auto}
+    .brand .name{font-weight:800;letter-spacing:.2px}
+    .nav ul{display:flex;gap:22px;list-style:none}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      gap:10px;padding:12px 18px;border-radius:999px;
+      background:linear-gradient(90deg,var(--primary),var(--primary-600));
+      box-shadow:0 10px 24px rgba(37,99,235,.25);
+      color:#fff;font-weight:700;border:0;cursor:pointer;
+    }
+    .btn.secondary{background:linear-gradient(90deg,var(--secondary),#16a34a);box-shadow:0 10px 24px rgba(34,197,94,.25)}
+    .btn.ghost{background:transparent;border:1px solid var(--border);color:#cbd5e1}
+    /* Hero */
+    .hero{position:relative;overflow:hidden}
+    .hero .inner{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;padding:72px 0}
+    .kicker{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#a5b4fc;background:rgba(37,99,235,.12);
+      border:1px solid var(--border);border-radius:999px;padding:6px 10px}
+    h1{font-size:46px;line-height:1.08;margin:12px 0 14px;font-weight:800}
+    .lead{font-size:18px;color:#cbd5e1;max-width:58ch}
+    .hero-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--border);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)
+    }
+    .badges{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .badge{font-size:12px;color:#e2e8f0;background:rgba(255,255,255,.06);border:1px solid var(--border);padding:8px 10px;border-radius:999px}
+    .hero-fig{
+      position:relative;border-radius:28px;overflow:hidden;border:1px solid var(--border);
+      box-shadow:0 30px 80px rgba(0,0,0,.45)
+    }
+    .hero-fig .hero-bg{display:block;width:100%;height:100%;object-fit:cover;aspect-ratio:16/9}
+    .hero-fig iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+    .hero-fig::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,.0), rgba(0,0,0,.45))}
+    .hero-fig .caption{position:absolute;left:16px;bottom:12px;font-size:13px;color:#e5e7eb}
+    .unmute-btn{position:absolute;left:12px;top:12px;backdrop-filter:blur(6px)}
+    /* Stats */
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:26px}
+    .stat{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:14px;padding:16px 14px;text-align:center}
+    .stat .n{font-size:32px;font-weight:800}
+    .stat .l{color:#cbd5e1;font-size:13px}
+    /* Sections */
+    section{padding:84px 0}
+    .section-title{text-align:center;margin:0 0 14px;font-size:34px;font-weight:800}
+    .section-sub{color:#cbd5e1;text-align:center;margin:0 auto 32px;max-width:70ch}
+    /* Features */
+    .grid{display:grid;gap:20px}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .card{
+      background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:16px;padding:22px;
+      transition:transform .2s ease, box-shadow .2s ease
+    }
+    .card:hover{transform:translateY(-4px);box-shadow:0 14px 38px rgba(0,0,0,.25)}
+    .card h3{margin:10px 0 6px;font-size:20px}
+    .card p{color:#cbd5e1;font-size:15px}
+    .card figure{height:170px;border-radius:12px;overflow:hidden;margin:0 0 12px;border:1px solid var(--border)}
+    .card figure img{width:100%;height:100%;object-fit:cover;display:block}
+    /* Pricing */
+    .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .price-card{background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));border:1px solid var(--border);
+      border-radius:20px;padding:26px;position:relative}
+    .price-card.popular{outline:2px solid var(--accent)}
+    .price{font-size:38px;font-weight:800;margin:10px 0;color:#fff}
+    .price small{font-size:14px;color:#cbd5e1;font-weight:600}
+    .feat{list-style:none;padding:0;margin:16px 0 22px}
+    .feat li{display:flex;gap:10px;margin:8px 0;color:#dbeafe}
+    .tick{display:inline-flex;align-items:center;justify-content:center;height:22px;width:22px;border-radius:6px;
+      background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.35);font-size:14px}
+    /* Testimonials */
+    .t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .t{background:rgba(255,255,255,.06);border:1px solid var(--border);border-left:4px solid var(--secondary);border-radius:14px;padding:18px}
+    .t header{display:flex;align-items:center;gap:12px;margin-bottom:10px;background:none;border:0}
+    .t img{height:38px;width:38px;border-radius:50%;object-fit:cover}
+    .t .name{font-weight:700}
+    /* Video */
+    .video-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .video{position:relative;padding-top:56.25%;border-radius:16px;overflow:hidden;border:1px solid var(--border)}
+    .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+    /* FAQ */
+    details{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:14px;padding:16px}
+    details+details{margin-top:12px}
+    summary{cursor:pointer;font-weight:700}
+    /* Footer */
+    footer{border-top:1px solid var(--border);padding:42px 0;color:#cbd5e1}
+    .foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:20px}
+    .foot a{color:#cbd5e1}
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero .inner{grid-template-columns:1fr}
+      .stats{grid-template-columns:repeat(2,1fr)}
+      .grid.cols-3{grid-template-columns:1fr}
+      .pricing{grid-template-columns:1fr}
+      .t-grid{grid-template-columns:1fr}
+      .video-grid{grid-template-columns:1fr}
+      .foot{grid-template-columns:1fr}
+      .nav ul{display:none}
+    }
+  /* Anchor price (perception booster) */
+.anchor-price{margin-top:-8px;color:#94a3b8;font-size:13px}
+.anchor-price s{opacity:.9;margin-right:6px}
+.anchor-note{opacity:.9}
+.price-card .btn{margin-top:8px}
+.hero-fig video{display:block;width:100%;height:100%;object-fit:cover}
+</style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <nav>
-            <div class="logo">🎓 EduBot</div>
-            <ul class="nav-links">
-                <li><a href="#features">Recursos</a></li>
-                <li><a href="#pricing">Planos</a></li>
-                <li><a href="#competition">Competição</a></li>
-                <li><a href="#faq">FAQ</a></li>
-            </ul>
-        </nav>
-    </header>
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <img alt="Logo EduBot" src="edubot-logo.svg">
+        <div class="name">EduBot <span style="opacity:.75;font-weight:700">• by Go Simulados</span></div>
+      </div>
+      <ul>
+        <li><a href="#como-funciona">Como funciona</a></li>
+        <li><a href="#planos">Planos</a></li>
+        <li><a href="#videos">Vídeos</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <a class="btn ghost" href="#planos">Começar grátis</a>
+    </div>
+  </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>🚀 Seu Assistente de IA para Aprovação em Concursos</h1>
-        <p>Bots especializados, correção de redação e chance de ganhar R$ 10.000!</p>
-        <a href="#pricing" class="cta-button">Começar Agora - Grátis</a>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div>
-                    <div class="stat-number">30.000+</div>
-                    <div class="stat-label">Questões Disponíveis</div>
-                </div>
-                <div>
-                    <div class="stat-number">287</div>
-                    <div class="stat-label">Aprovados em 2024</div>
-                </div>
-                <div>
-                    <div class="stat-number">5.000+</div>
-                    <div class="stat-label">Estudantes Ativos</div>
-                </div>
-                <div>
-                    <div class="stat-number">4.9/5</div>
-                    <div class="stat-label">Avaliação Média</div>
-                </div>
-            </div>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container inner">
+      <div>
+        <span class="kicker">IA aplicada a concursos • Estatísticas em tempo real</span>
+        <h1>Acelere sua aprovação com um coach de IA que estuda com você 24/7</h1>
+        <p class="lead">Bots especializados por banca, simulados inteligentes, correção de redação e uma experiência de estudo gamificada que mantém você motivado até a nomeação.</p>
+        <div class="badges">
+          <span class="badge">30.000+ questões</span>
+          <span class="badge">4.9★ avaliação média</span>
+          <span class="badge">287 aprovações (2024)</span>
         </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
-            <h2 class="section-title">Por que escolher o EduBot?</h2>
-            <p class="section-subtitle">Tecnologia de ponta para sua aprovação</p>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Especialização Total</h3>
-                    <p>Bots treinados especificamente para seu concurso. Conhecimento profundo da banca, pegadinhas e assuntos mais cobrados.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🖋️</div>
-                    <h3>Correção de Redação</h3>
-                    <p>Análise completa das 5 competências do ENEM. Feedback detalhado em até 24h com sugestões de melhoria.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Estatísticas Avançadas</h3>
-                    <p>Acompanhe sua evolução com gráficos, identifique pontos fracos e veja seu progresso em tempo real.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🧠</div>
-                    <h3>Memória Permanente</h3>
-                    <p>O bot lembra de tudo que conversamos. Personalização total baseada no seu histórico e dificuldades.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>30.000+ Questões</h3>
-                    <p>Banco gigante de questões anteriores de todas as bancas. Simulados ilimitados com correção automática.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🏆</div>
-                    <h3>Ranking Competitivo</h3>
-                    <p>Compare seu desempenho com outros estudantes. Gamificação que motiva e engaja!</p>
-                </div>
-            </div>
+        <div style="display:flex;gap:12px;margin-top:18px">
+          <a class="btn" href="#planos">Começar agora</a>
+          <a class="btn secondary" href="#videos">Ver em ação</a>
         </div>
-    </section>
-
-    <!-- Competition Section -->
-    <section id="competition" class="competition">
-        <div class="container">
-            <h2 class="section-title" style="color: white;">🏆 Grande Competição Anual</h2>
-            <div class="prize-amount">R$ 10.000</div>
-            <p style="font-size: 1.3rem; margin: 1rem 0;">Para o estudante campeão!</p>
-            
-            <div style="background: white; border-radius: 15px; padding: 2rem; margin: 2rem auto; max-width: 600px;">
-                <h3 style="color: var(--primary); margin-bottom: 1rem;">📊 Critérios de Classificação:</h3>
-                <ul style="text-align: left; list-style-position: inside;">
-                    <li>✅ Maior número de questões acertadas</li>
-                    <li>✅ Melhor tempo médio de resposta</li>
-                    <li>✅ Aprovação comprovada em concurso</li>
-                </ul>
-                <p style="margin-top: 1rem; font-weight: bold; color: var(--primary);">Exclusivo para assinantes do Acesso Total Anual!</p>
-            </div>
-
-            <div style="margin-top: 2rem;">
-                <h3 style="color: white; margin-bottom: 1rem;">🏅 Premiação Completa:</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; max-width: 800px; margin: 0 auto;">
-                    <div style="background: white; padding: 1rem; border-radius: 10px;">
-                        <div style="font-size: 2rem;">🥇</div>
-                        <div style="font-weight: bold; color: var(--primary);">R$ 10.000</div>
-                    </div>
-                    <div style="background: white; padding: 1rem; border-radius: 10px;">
-                        <div style="font-size: 2rem;">🥈</div>
-                        <div style="font-weight: bold; color: var(--primary);">R$ 3.000</div>
-                    </div>
-                    <div style="background: white; padding: 1rem; border-radius: 10px;">
-                        <div style="font-size: 2rem;">🥉</div>
-                        <div style="font-weight: bold; color: var(--primary);">R$ 1.500</div>
-                    </div>
-                    <div style="background: white; padding: 1rem; border-radius: 10px;">
-                        <div style="font-size: 2rem;">🎖️</div>
-                        <div style="font-weight: bold; color: var(--primary);">R$ 500</div>
-                        <div style="font-size: 0.8rem;">(4º ao 10º)</div>
-                    </div>
-                </div>
-            </div>
+        <div class="stats">
+          <div class="stat"><div class="n">30.000+</div><div class="l">Questões</div></div>
+          <div class="stat"><div class="n">5.000+</div><div class="l">Alunos ativos</div></div>
+          <div class="stat"><div class="n">4.9/5</div><div class="l">Satisfação</div></div>
+          <div class="stat"><div class="n">287</div><div class="l">Aprovados em 2024</div></div>
         </div>
-    </section>
+      </div>
+      <figure class="hero-fig">
+  <video class="hero-bg" autoplay muted loop playsinline
+         poster="https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?q=80&w=1600&auto=format&fit=crop">
+    <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm" type="video/webm">
+    <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+  </video>
+  <figcaption class="caption">Estudo focado + IA = aprovação mais rápida</figcaption>
+</figure>
+    </div>
+  </section>
 
-    <!-- Pricing Section -->
-    <section id="pricing" class="pricing">
-        <div class="container">
-            <h2 class="section-title">Escolha Seu Plano</h2>
-            <p class="section-subtitle">Invista na sua aprovação com o melhor custo-benefício</p>
-            
-            <div class="pricing-grid">
-                <!-- Plano Gratuito -->
-                <div class="pricing-card">
-                    <h3>🆓 Gratuito</h3>
-                    <div class="price">R$ 0</div>
-                    <ul class="features-list">
-                        <li>Perguntas gerais sobre estudos</li>
-                        <li>Dicas de técnicas de estudo</li>
-                        <li>Conselhos motivacionais</li>
-                        <li>Orientação sobre concursos</li>
-                    </ul>
-                    <a href="#" class="buy-button">Começar Grátis</a>
-                </div>
+  <!-- Como funciona / Features -->
+  <section id="como-funciona">
+    <div class="container">
+      <h2 class="section-title">Por que escolher o EduBot?</h2>
+      <p class="section-sub">Tecnologia de ponta para maximizar sua nota. Veja os pilares que aceleram o seu resultado.</p>
+      <div class="grid cols-3">
+        <article class="card">
+          <figure><img alt="Simulados e questões" loading="lazy"
+            src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1400&auto=format&fit=crop"></figure>
+          <h3>Simulados inteligentes</h3>
+          <p>Monte simulados por banca, assunto e dificuldade. O sistema ajusta as próximas questões conforme seu desempenho.</p>
+        </article>
+        <article class="card">
+          <figure><img alt="Correção de redação" loading="lazy" decoding="async" fetchpriority="high"
+            src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=1400&auto=format&fit=crop"></figure>
+          <h3>Correção de redação</h3>
+          <p>Avaliação por competências (ENEM) com devolutiva clara, exemplos e plano de melhoria contínua.</p>
+        </article>
+        <article class="card">
+          <figure><img alt="Estatísticas e evolução" loading="lazy"
+            src="https://images.unsplash.com/photo-1543286386-2e659306cd6c?q=80&w=1400&auto=format&fit=crop"></figure>
+          <h3>Estatísticas em tempo real</h3>
+          <p>Dashboard com acertos por tema, tempo médio, trilhas sugeridas e histórico para atacar pontos fracos.</p>
+        </article>
+        <article class="card">
+          <figure><img alt="Memória e personalização" loading="lazy"
+            src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1400&auto=format&fit=crop"></figure>
+          <h3>Memória que personaliza</h3>
+          <p>O EduBot lembra de tudo: dificuldades, metas e datas. O plano se adapta diariamente à sua rotina.</p>
+        </article>
+        <article class="card">
+          <figure><img alt="Comunidade e ranking" loading="lazy"
+            src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1400&auto=format&fit=crop"></figure>
+          <h3>Ranking e desafios</h3>
+          <p>Gamificação para manter o ritmo: compare resultados, entre em desafios semanais e ganhe badges.</p>
+        </article>
+        <article class="card">
+          <figure><img alt="Atendimento 24/7" loading="lazy"
+            src="https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1400&auto=format&fit=crop"></figure>
+          <h3>Atendimento 24/7</h3>
+          <p>Estude quando quiser. O bot responde no Telegram a qualquer hora, inclusive feriados.</p>
+        </article>
+      </div>
+    </div>
+  </section>
 
-                <!-- Plano Especializado -->
-                <div class="pricing-card">
-                    <h3>💼 Bot Especializado</h3>
-                    <div class="price">R$ 97-197<span class="price-small">/6 meses</span></div>
-                    <ul class="features-list">
-                        <li>Bot 100% focado no seu concurso</li>
-                        <li>Conhecimento profundo da banca</li>
-                        <li>Estatísticas das últimas provas</li>
-                        <li>Correção de redação (se aplicável)</li>
-                        <li>Simulados personalizados</li>
-                        <li>Relatórios em PDF</li>
-                    </ul>
-                    <a href="#" class="buy-button">Escolher Concurso</a>
-                </div>
-
-                <!-- Plano Total Anual -->
-                <div class="pricing-card featured">
-                    <div class="badge">🔥 MAIS POPULAR</div>
-                    <h3>🌟 Acesso Total Anual</h3>
-                    <div class="price">R$ 420<span class="price-small">/ano</span></div>
-                    <div style="text-align: center; margin: 1rem 0;">
-                        <span style="color: var(--secondary); font-weight: bold;">ou 12x R$ 35 sem juros</span>
-                    </div>
-                    <ul class="features-list">
-                        <li>TODOS os bots especializados</li>
-                        <li>Correção ilimitada de redações</li>
-                        <li>30.000+ questões de todos concursos</li>
-                        <li>Estatísticas avançadas</li>
-                        <li>🏆 Participa da Competição R$ 10k</li>
-                        <li>Novos concursos incluídos automaticamente</li>
-                        <li>Materiais exclusivos mensais</li>
-                        <li>Download de PDFs</li>
-                    </ul>
-                    <a href="#" class="buy-button" style="background: var(--accent);">Assinar Anual</a>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 3rem;">
-                <p style="font-size: 1.2rem; color: var(--primary); font-weight: bold;">✅ 7 dias de garantia | ✅ Cancele quando quiser | ✅ Suporte prioritário</p>
-            </div>
+  <!-- Competição / Premiação -->
+  <section>
+    <div class="container">
+      <div class="hero-card" style="text-align:center">
+        <h2 class="section-title" style="margin-bottom:4px">🏆 Competição Anual</h2>
+        <p class="section-sub" style="margin-top:0">Assinantes do plano anual concorrem a <strong>R$ 10.000</strong> com base em desempenho e aprovação comprovada.</p>
+        <div class="badges" style="justify-content:center;margin-top:10px">
+          <span class="badge">+ acertos</span>
+          <span class="badge">tempo médio menor</span>
+          <span class="badge">aprovação comprovada</span>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Testimonials -->
-    <section class="testimonials">
-        <div class="container">
-            <h2 class="section-title">O que nossos alunos dizem</h2>
-            <p class="section-subtitle">Histórias reais de aprovação</p>
-            
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <p>"Passei para o Banco do Brasil graças ao EduBot! O bot especializado conhecia todas as pegadinhas da CESGRANRIO. Fiz mais de 3.000 questões e fui aprovado em 4º lugar!"</p>
-                    <div class="testimonial-author">⭐⭐⭐⭐⭐ Carlos Silva - Aprovado BB 2024</div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <p>"A correção de redação é sensacional! Evoluí de 720 para 960 pontos em 3 meses. O feedback é detalhado e realmente ajuda a melhorar. Agora estou confiante para o ENEM!"</p>
-                    <div class="testimonial-author">⭐⭐⭐⭐⭐ Ana Rodrigues - Estudante ENEM</div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <p>"O que mais gostei foi a memória do bot. Ele lembra de tudo que estudamos e personaliza as dicas. É como ter um professor particular 24/7. Valeu cada centavo!"</p>
-                    <div class="testimonial-author">⭐⭐⭐⭐⭐ João Mendes - Aprovado PF 2024</div>
-                </div>
-            </div>
+  <!-- Planos -->
+  <section id="planos">
+    <div class="container">
+      <h2 class="section-title">Escolha seu plano</h2>
+      <p class="section-sub">Comece grátis e evolua para recursos profissionais quando precisar.</p>
+      <div class="pricing">
+        <div class="price-card">
+          <h3>Gratuito</h3>
+          <div class="price">R$ 0 <small>/sempre</small></div>
+          <ul class="feat">
+            <li><span class="tick">✓</span>Perguntas gerais e técnicas de estudo</li>
+            <li><span class="tick">✓</span>Conselhos motivacionais</li>
+            <li><span class="tick">✓</span>Orientações sobre concursos</li>
+          </ul>
+          <a class="btn" href="#">Começar grátis</a>
         </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" class="faq">
-        <div class="container">
-            <h2 class="section-title">Perguntas Frequentes</h2>
-            
-            <div class="faq-item">
-                <div class="faq-question">❓ Como funciona o bot especializado?</div>
-                <div>Cada bot é treinado especificamente para um concurso. Ele conhece a banca, os assuntos mais cobrados, as pegadinhas típicas e tem acesso a todas as questões anteriores. É como ter um especialista daquele concurso 24/7!</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">❓ Posso trocar de concurso depois?</div>
-                <div>No plano especializado, você escolhe um concurso específico. Para flexibilidade total, recomendamos o Acesso Total Anual que permite acessar todos os concursos.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">❓ Como funciona a correção de redação?</div>
-                <div>Você envia foto ou texto da sua redação. Em até 24h recebe análise completa das 5 competências do ENEM, nota de 0-1000, feedback detalhado e sugestões de melhoria.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">❓ Como funciona a competição de R$ 10.000?</div>
-                <div>Exclusivo para assinantes anuais! Você acumula pontos fazendo questões. O critério principal é aprovação comprovada em concurso (+10.000 pontos). Quanto mais estuda e melhor seu desempenho, maior sua chance!</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">❓ Posso cancelar quando quiser?</div>
-                <div>Sim! Sem multa, sem burocracia. Além disso, oferecemos 7 dias de garantia de reembolso total se não gostar.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">❓ Quais concursos estão disponíveis?</div>
-                <div>Temos bots para: Polícia Federal, Banco do Brasil, Caixa, Receita Federal, INSS, TRF, TRE, TST, ENEM, Vestibulares e muitos outros! Novos concursos são adicionados mensalmente.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">❓ O bot realmente funciona 24/7?</div>
-                <div>Sim! Nosso bot está sempre disponível no Telegram. Você pode estudar de madrugada, final de semana, feriado... quando quiser!</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">❓ Como faço para começar?</div>
-                <div>1) Escolha seu plano acima 2) Faça o pagamento 3) Receba acesso instantâneo no Telegram 4) Comece a estudar! É rápido e fácil!</div>
-            </div>
+        <div class="price-card">
+          <h3>Bot Especializado</h3>
+          <div class="price">A partir de 12x de R$ 8,08 <small>até 12x de R$ 16,42</small></div>
+          <ul class="feat">
+            <li><span class="tick">✓</span>Foco total em um concurso</li>
+            <li><span class="tick">✓</span>Conhecimento da banca e estatísticas</li>
+            <li><span class="tick">✓</span>Simulados personalizados</li>
+            <li><span class="tick">✓</span>Relatórios em PDF</li>
+          </ul>
+          <div class="anchor-price"><s>de R$ 197</s> <span class="anchor-note">ou R$ 97 à vista</span></div>
+          <a class="btn" href="#">Escolher concurso</a>
         </div>
-    </section>
-
-    <!-- Final CTA -->
-    <section style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 4rem 2rem; text-align: center;">
-        <div class="container">
-            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Pronto para sua aprovação?</h2>
-            <p style="font-size: 1.3rem; margin-bottom: 2rem;">Junte-se a mais de 5.000 estudantes que já estão usando o EduBot!</p>
-            <a href="#pricing" class="cta-button">Começar Agora - Grátis</a>
-            <p style="margin-top: 1rem; opacity: 0.9;">✅ Sem cartão de crédito | ✅ Acesso imediato | ✅ Cancele quando quiser</p>
+        <div class="price-card popular">
+          <div style="position:absolute;right:16px;top:16px" class="badge">MAIS POPULAR</div>
+          <h3>Acesso Total Anual</h3>
+          <div class="price">12x de R$ 35,00 <small>sem juros</small></div>
+          <ul class="feat">
+            <li><span class="tick">✓</span>Todos os bots especializados</li>
+            <li><span class="tick">✓</span>Correção ilimitada de redações</li>
+            <li><span class="tick">✓</span>30.000+ questões</li>
+            <li><span class="tick">✓</span>Estatísticas avançadas</li>
+            <li><span class="tick">✓</span>Participa da Competição R$ 10k</li>
+            <li><span class="tick">✓</span>Materiais exclusivos mensais</li>
+          </ul>
+          <a class="btn secondary" href="#">Assinar — 12x</a>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div style="margin-bottom: 2rem;">
-                <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">🎓 EduBot - GO Simulados</h3>
-                <p>Seu assistente de IA para aprovação em concursos</p>
+  <!-- Depoimentos -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">Histórias de aprovação</h2>
+      <p class="section-sub">Resultados reais de quem estudou com o EduBot.</p>
+      <div class="t-grid">
+        <article class="t">
+          <header>
+            <img alt="Foto Carlos" loading="lazy" src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=400&auto=format&fit=crop">
+            <div>
+              <div class="name">Carlos Silva</div>
+              <small style="color:#94a3b8">Aprovado BB 2024</small>
             </div>
-            
-            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem;">
-                <a href="#" style="color: white; text-decoration: none;">Termos de Uso</a>
-                <a href="#" style="color: white; text-decoration: none;">Política de Privacidade</a>
-                <a href="#" style="color: white; text-decoration: none;">Contato</a>
-                <a href="#" style="color: white; text-decoration: none;">Suporte</a>
+          </header>
+          <p>"Passei para o Banco do Brasil com a ajuda do EduBot. Fiz 3.000+ questões e foquei nas pegadinhas certas."</p>
+        </article>
+        <article class="t">
+          <header>
+            <img alt="Foto Ana" loading="lazy" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&auto=format&fit=crop">
+            <div>
+              <div class="name">Ana Rodrigues</div>
+              <small style="color:#94a3b8">Estudante ENEM</small>
             </div>
-            
-            <p>&copy; 2025 EduBot. Todos os direitos reservados.</p>
-            <p style="margin-top: 0.5rem; opacity: 0.8;">CNPJ: XX.XXX.XXX/XXXX-XX</p>
+          </header>
+          <p>"A correção de redação me levou de 720 para 960 pontos em 3 meses. Feedback objetivo e prático."</p>
+        </article>
+        <article class="t">
+          <header>
+            <img alt="Foto João" loading="lazy" src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=400&auto=format&fit=crop">
+            <div>
+              <div class="name">João Mendes</div>
+              <small style="color:#94a3b8">Aprovado PF 2024</small>
+            </div>
+          </header>
+          <p>"O bot lembra das minhas dificuldades e ajusta os estudos. É como ter um professor particular 24/7."</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vídeos motivacionais -->
+  <section id="videos">
+    <div class="container">
+      <h2 class="section-title">Pra motivar nos dias difíceis</h2>
+      <p class="section-sub">Assista a vídeos curtos de disciplina e foco (substitua pelos seus favoritos quando quiser).</p>
+      <div class="video-grid">
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/g-jwWYX7Jlo" title="Motivational Study Video 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-    </footer>
-</body>
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/ZXsQAXx_ao0" title="Motivational Study Video 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <h2 class="section-title">Perguntas frequentes</h2>
+      <div class="grid" style="max-width:900px;margin:0 auto">
+        <details>
+          <summary>Como funciona o bot especializado?</summary>
+          <p>Cada bot é treinado para um concurso específico, domina a banca e sugere trilhas com base nas suas métricas.</p>
+        </details>
+        <details>
+          <summary>Posso trocar de concurso?</summary>
+          <p>No plano especializado o foco é um concurso. No plano anual você acessa todos sem limites.</p>
+        </details>
+        <details>
+          <summary>Como é a correção de redação?</summary>
+          <p>Você envia sua redação (foto ou texto). Em até 24h recebe nota, análise por competência e recomendações.</p>
+        </details>
+        <details>
+          <summary>Quais são as formas de pagamento?</summary>
+          <p>Pix, cartão de crédito em até 12x e boleto. Emissão de NF-e sob demanda.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA final -->
+  <section>
+    <div class="container hero-card" style="text-align:center">
+      <h2 class="section-title" style="margin-bottom:6px">Pronto para começar?</h2>
+      <p class="section-sub">Junte-se a milhares de alunos estudando com o EduBot hoje mesmo.</p>
+      <a class="btn" href="#planos">Começar agora — grátis</a>
+      <div style="margin-top:12px;color:#94a3b8;font-size:13px">7 dias de garantia • Cancele quando quiser • Suporte prioritário</div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container foot">
+      <div>
+        <div class="brand" style="margin-bottom:10px">
+          <img alt="Logo EduBot" src="edubot-logo.svg" height="32">
+          <div class="name">EduBot • by Go Simulados</div>
+        </div>
+        <small>Seu assistente de IA para aprovação em concursos.</small>
+      </div>
+      <div>
+        <strong>Legal</strong><br>
+        <a href="#">Termos de Uso</a><br>
+        <a href="#">Política de Privacidade</a>
+      </div>
+      <div>
+        <strong>Contato</strong><br>
+        <a href="#">Suporte</a><br>
+        <small>CNPJ: XX.XXX.XXX/XXXX-XX</small>
+      </div>
+    </div>
+  </footer>
+
+  </body>
 </html>
